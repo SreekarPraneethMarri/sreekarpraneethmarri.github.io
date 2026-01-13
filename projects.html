@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Projects</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.4/css/academicons.min.css" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <script defer src="assets/js/main.js"></script>
+
+  <style>
+    /* MODIFICATION: A fully dynamic grid to prevent scrollbars */
+    .cards {
+      display: grid;
+      gap: 20px;
+      /* This creates as many columns as can fit (min 350px wide), and they grow to fill the space. No overflow. */
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+
+    .teach-controls {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    #proj-search {
+      flex-grow: 1;
+      height: 50px;
+      font-size: 16px;
+      padding: 12px 16px;
+    }
+
+    .proj-media {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background-color: var(--card);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      overflow: hidden;
+    }
+    .proj-media img,
+    .proj-media video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .proj-details {
+      margin: 8px 0 0 18px;
+      padding: 0;
+      line-height: 1.6;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .proj-details li + li {
+      margin-top: 6px;
+    }
+    .card.proj {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card.proj a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      height: 100%;
+    }
+    .card.proj:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar" role="navigation" aria-label="Mobile">
+    <button class="hamburger" id="btn-menu" aria-label="Toggle menu"><i class="fa fa-bars"></i></button>
+    <strong id="topbar-name">Sreekar Praneeth Marri</strong>
+  </div>
+
+  <div class="app">
+    <aside class="sidebar" aria-label="Sidebar">
+      <div class="brand">
+        <img src="assets/img/Sreekar.jpg" alt="Profile" />
+        <div>
+          <div class="name" id="cfg-name">Sreekar Praneeth Marri </div>
+          <div class="role" id="cfg-role">Machine Learning · Robotics &amp; AI</div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <nav class="nav" id="nav">
+        <a href="index.html" class="active"><i class="fa fa-house"></i>Home</a>
+        <a href="publications.html"><i class="fa fa-book-open"></i>Publications</a>
+        <a href="projects.html"><i class="fa fa-rocket"></i>Projects</a>
+        <a href="professional.html"><i class="fa fa-microphone"></i>Professional Experience</a>
+        <a href="teaching.html"><i class="fa fa-chalkboard-teacher"></i>Teaching Experience</a>
+        <a href="contact.html"><i class="fa fa-envelope"></i>Contact</a>
+      </nav>
+
+      <div class="social" aria-label="Profiles">
+        <a id="cfg-twitter" href="mailto:praneethmarri2505@gmail.com" title="Email" target="_blank" rel="noopener"><i class="fa-solid fa-envelope"></i></a>
+        <a id="cfg-gscholar" href="https://scholar.google.com/citations?user=9nziCwEAAAAJ" title="Google Scholar" target="_blank" rel="noopener"><i class="fa-brands fa-google-scholar"></i></a>
+        <a id="cfg-github" href="https://github.com/SreekarPraneethMarri" title="GitHub" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
+        <a id="cfg-linkedin" href="https://www.linkedin.com/in/sreekarpraneethmarri/" title="LinkedIn" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i></a>
+      </div>
+
+      <div class="btn-row">
+        <a class="btn" id="download-cv" href="cv/SreekarPraneethMarri_CV.pdf" target="_blank" rel="noopener"><i class="fa fa-file"></i> CV</a>
+        <button class="btn secondary" id="toggle-theme" type="button"><i class="fa fa-moon"></i> Theme</button>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section id="projects" tabindex="-1">
+        <h1 class="page-title">Projects</h1>
+        <p class="subtitle">A curated collection of my work, demonstrating practical experience in robotics, reinforcement learning, and large-scale data systems.</p>
+        
+        <div class="teach-controls">
+          <input id="proj-search" class="input" type="search" placeholder="Search projects by title or skill…" autocomplete="off" />
+          <span id="proj-meta" class="muted">5 results</span>
+        </div>
+
+        <div class="cards" id="proj-list">
+          <!--
+          <div class="card proj">
+            <a href="project-edge-llm.html">
+              <div class="proj-media">
+                <video src="assets/img/Infinity.mp4" autoplay loop muted playsinline></video>
+              </div>
+              <div class="proj-media">
+                <img src="assets/img/LocusEdge.jpeg" alt="LocusEdge">
+              </div>
+              <h4>Edge-Optimized LLM for Autonomous Robotics</h4>
+              <ul class="proj-details">
+                <li>Led a team of four in developing an offline mobile robot using a fine-tuned, quantized 4-bit Llama3 model with a Whisper model for speech processing and ROS, eliminating cloud dependencies for real-time execution.</li>
+                <li>Optimized motion planning, achieving 96% positional and 93% rotational accuracy with 400ms latency, enhancing navigation in dynamic environments.</li>
+              </ul>
+            </a>
+          </div>
+          -->
+
+          <div class="card proj">
+            <!--<a href="project-edge-llm.html">-->
+              <div class="proj-media">
+                <video src="assets/img/Edge.mp4" autoplay loop muted playsinline></video>
+              </div>
+              <!-- <div class="proj-media">
+                <img src="assets/img/LocusEdge.jpeg" alt="LocusEdge">
+              </div> -->
+              <h4>Edge-Optimized LLM for Autonomous Robotics</h4>
+              <ul class="proj-details">
+                <li>Led a team of four in developing an offline mobile robot using a fine-tuned, quantized 4-bit Llama3 model with a Whisper model for speech processing and ROS, eliminating cloud dependencies for real-time execution.</li>
+                <li>Optimized motion planning, achieving 96% positional and 93% rotational accuracy with 400ms latency, enhancing navigation in dynamic environments.</li>
+              </ul>
+            <!--</a>-->
+          </div>
+
+          <div class="card proj">
+            <!--<a href="project-ligo-analysis.html">-->
+              <!-- <div class="proj-media">
+                <img src="assets/img/Ligo.gif" alt="Ligo">
+              </div> -->
+              <div class="proj-media">
+                <video src="assets/img/Ligo.mp4" autoplay loop muted playsinline></video>
+              </div>
+              <h4>LIGO Data Analysis using Matrix Profiles</h4>
+              <ul class="proj-details">
+                <li>Analyzed LIGO gravitational wave data using Python, including data extraction, frequency analysis, and matrix profiling for signals from Hanford (H1) and Livingston (L1) detectors.</li>
+                <li>Improved detection accuracy and insights into cosmic events by processing signals and recognizing anomalies in gravitational waves.</li>
+              </ul>
+            <!--</a>-->
+          </div>
+
+          <div class="card proj">
+            <!--<a href="project-adaptive-robot.html">-->
+              <div class="proj-media">
+                <video src="assets/img/SoftTurtle.mp4" autoplay loop muted playsinline></video>
+              </div>
+              <h4>Adaptive Tortoise-Inspired Soft Robot</h4>
+              <ul class="proj-details">
+                <li>Built a modular tortoise-inspired soft quadruped robot with fiber-reinforced pneumatic legs and a 3D-printed TPU body; implemented teleoperated gait control via electro-pneumatic valves.</li>
+                <li>Validated bending with constant-curvature modeling + Abaqus FEA, and demonstrated multi-surface locomotion (up to 30° incline) and object pickup/transport using a granular-jamming gripper (~30g payload).</li>
+              </ul>
+            <!--</a>-->
+          </div>
+          
+          <div class="card proj">
+            <!--<a href="project-color-sorting-arm.html">-->
+              <div class="proj-media">
+                <video src="assets/img/RL1.mp4" autoplay loop muted playsinline></video>
+              </div>
+              <h4>Robotic Arm for Color Sorting using Reinforcement Learning</h4>
+              <ul class="proj-details">
+                <li>Directed a team of three in designing a robotic arm for color sorting, enabling object classification into respective bins based on color by maximizing rewards through adaptive decision-making.</li>
+                <li>Supervised the integration of Python and reinforcement learning algorithms to enhance sorting accuracy and scalability.</li>
+              </ul>
+            <!--</a>-->
+          </div>
+          
+          <div class="card proj">
+            <!--<a href="project-flight-delay.html">-->
+              <div class="proj-media">
+                <img src="assets/img/BigData.jpeg" alt="BigData">
+              </div>
+              <h4>Real-Time Flight Delay Prediction System</h4>
+              <ul class="proj-details">
+                <li>Collaborated with a team to build a real-time flight delay prediction system using Kafka, Spark, and MongoDB, achieving a 20% increase in prediction accuracy over existing architectures.</li>
+                <li>Generated data processing workflows and machine learning models to optimize the decision-making process for airport operations.</li>
+              </ul>
+            <!--</a>-->
+          </div>
+
+        </div>
+        <footer>Copyright © <span id="year"></span> Sreekar Praneeth Marri. All rights reserved.</footer>
+      </section>
+    </main>
+  </div>
+  
+  <script>
+    (function projSearch(){
+      const input = document.getElementById('proj-search');
+      const list  = document.getElementById('proj-list');
+      if (!input || !list) return;
+
+      const cards = Array.from(list.children); 
+      const meta  = document.getElementById('proj-meta');
+      if (!cards.length) return;
+
+      function render(){
+        const q = input.value.trim().toLowerCase();
+        let shown = 0;
+        cards.forEach(c => {
+          const ok = c.textContent.toLowerCase().includes(q);
+          c.style.display = ok ? '' : 'none';
+          if (ok) shown++;
+        });
+        meta.textContent = `${shown} result${shown !== 1 ? 's' : ''}`;
+      }
+
+      let t; input.addEventListener('input', () => { clearTimeout(t); t = setTimeout(render, 120); });
+      render();
+    })();
+  </script>
+</body>
+</html>

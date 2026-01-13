@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Professional Experience</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.4/css/academicons.min.css" crossorigin="anonymous"/>
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <script defer src="assets/js/main.js"></script>
+
+  <style>
+    /* MODIFICATION: Styles for the summary and bullet points */
+    .xp-narrative {
+      margin: 10px 0 12px;
+      line-height: 1.65;
+      font-style: italic;
+      /* This sets the summary text to a different, muted color for contrast */
+      color: var(--muted);
+    }
+    .xp-narrative em {
+      /* This makes the thesis title within the summary stand out */
+      color: var(--text);
+    }
+    .xp-bullets {
+      margin: 0 0 0 18px;
+      line-height: 1.6;
+      padding: 0;
+    }
+    .xp-bullets li + li { margin-top: 8px; }
+    .teach-sub { margin-top: 6px; color: var(--muted); }
+
+    /* --- Styles for wider search bar --- */
+    .teach-controls {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    #exp-search {
+      flex-grow: 1;
+      height: 46px;
+      font-size: 15px;
+    }
+    #exp-meta {
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar" role="navigation" aria-label="Mobile">
+    <button class="hamburger" id="btn-menu" aria-label="Toggle menu"><i class="fa fa-bars"></i></button>
+    <strong id="topbar-name">Sreekar Praneeth Marri</strong>
+  </div>
+
+  <div class="app">
+    <aside class="sidebar" aria-label="Sidebar">
+      <div class="brand">
+        <img src="assets/img/Sreekar.jpg" alt="Profile" />
+        <div>
+          <div class="name" id="cfg-name">Sreekar Praneeth Marri</div>
+          <div class="role" id="cfg-role">Machine Learning · Robotics &amp; AI</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <nav class="nav" id="nav">
+        <a href="index.html" class="active"><i class="fa fa-house"></i>Home</a>
+        <a href="publications.html"><i class="fa fa-book-open"></i>Publications</a>
+        <a href="projects.html"><i class="fa fa-rocket"></i>Projects</a>
+        <a href="professional.html"><i class="fa fa-microphone"></i>Professional Experience</a>
+        <a href="teaching.html"><i class="fa fa-chalkboard-teacher"></i>Teaching Experience</a>
+        <a href="contact.html"><i class="fa fa-envelope"></i>Contact</a>
+      </nav>
+
+      <div class="social" aria-label="Profiles">
+        <a id="cfg-twitter" href="mailto:praneethmarri2505@gmail.com" title="Email" target="_blank" rel="noopener"><i class="fa-solid fa-envelope"></i></a>
+        <a id="cfg-gscholar" href="https://scholar.google.com/citations?user=9nziCwEAAAAJ" title="Google Scholar" target="_blank" rel="noopener"><i class="fa-brands fa-google-scholar"></i></a>
+        <a id="cfg-github" href="https://github.com/SreekarPraneethMarri" title="GitHub" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
+        <a id="cfg-linkedin" href="https://www.linkedin.com/in/sreekarpraneethmarri/" title="LinkedIn" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i></a>
+      </div>
+
+      <div class="btn-row">
+        <a class="btn" id="download-cv" href="cv/SreekarPraneethMarri_CV.pdf" target="_blank" rel="noopener"><i class="fa fa-file"></i> CV</a>
+        <button class="btn secondary" id="toggle-theme" type="button"><i class="fa fa-moon"></i> Theme</button>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section id="professional" tabindex="-1">
+        <h1 class="page-title">Professional Experience</h1>
+        <p class="subtitle">Selected research &amp; industry roles in robotics and machine learning - newest first.</p>
+
+        <div class="teach-controls">
+          <input id="exp-search" class="input" type="search" placeholder="Search organization, role, skills…" autocomplete="off" />
+          <span id="exp-meta" class="muted"></span>
+        </div>
+
+        <ol class="teach-list" id="exp-list">
+
+          <li class="teach-card">
+            <div class="teach-title">
+              <span>
+                <a href="https://sites.bu.edu/ranzani-lab/" target="_blank" rel="noopener">
+                  Boston University, Morphable Biorobotics Lab
+                </a>
+                - <em>Graduate Researcher</em>
+              </span>
+              <span class="teach-badge">Sep&nbsp;2024 - Present</span>
+            </div>
+            <div class="teach-sub">
+              Advisor:
+              <a href="https://www.bu.edu/eng/profile/tommaso-ranzini-phd/" target="_blank" rel="noopener">Prof. Tommaso Ranzani</a>
+            </div>
+            <div class="xp-narrative">
+              My graduate thesis, titled <em>"Closed-Loop Control of Multi-DOF Soft Robotic Actuators using Machine Learning and Model Predictive Control,"</em> involves complex data-driven strategies for complex underwater soft robotics.
+            </div>
+            <ul class="xp-bullets">
+                <li>Developing inverse models and reinforcement learning frameworks for precise <strong>open-loop and closed-loop control</strong> of multi-DOF actuators in underwater environments.</li>
+                <li>Architecting a real-time control system for Soft Balloon Actuators (SBAs) with integrated sensing, combining reinforcement learning and MPC for adaptive motion.</li>
+                <li>Advancing data-driven approaches and modeling techniques to improve the performance, robustness, and trajectory tracking of soft robotic systems.</li>
+            </ul>
+            <div class="tags">
+              <span class="tag">Soft Robotics</span>
+              <span class="tag">Reinforcement Learning</span>
+              <span class="tag">Control Theory</span>
+              <span class="tag">System Identification</span>
+            </div>
+          </li>
+
+          <li class="teach-card">
+            <div class="teach-title">
+              <span>
+                <a href="https://taylab.org/" target="_blank" rel="noopener">
+                  Boston University School of Medicine, Tay Lab
+                </a>
+                - <em>Research Programmer</em>
+              </span>
+              <span class="teach-badge">Nov&nbsp;2024 - Mar&nbsp;2025</span>
+            </div>
+            <div class="teach-sub">
+              Mentor:
+              <a href="https://www.bu.edu/biology/people/profiles/tuan-leng-tay/" target="_blank" rel="noopener">Prof. Tuan Leng Tay</a>
+            </div>
+            <div class="xp-narrative">
+              Contributed to a cutting-edge biomedical imaging project, applying deep learning to automate the analysis of cellular structures in high-resolution microscopy.
+            </div>
+            <ul class="xp-bullets">
+              <li>Engineered an end-to-end <strong>U-Net segmentation pipeline</strong> to automatically detect and analyze microglial cells, enabling scalable, high-volume data processing.</li>
+              <li>Managed the complete <strong>MLOps workflow</strong>, from large-scale data annotation and preprocessing to deploying models on high-performance computing (HPC) infrastructure.</li>
+            </ul>
+            <div class="tags">
+              <span class="tag">Biomedical Imaging</span>
+              <span class="tag">Deep Learning</span>
+              <span class="tag">U-Net</span>
+              <span class="tag">Segmentation</span>
+              <span class="tag">MLOps</span>
+            </div>
+          </li>
+
+          <li class="teach-card">
+            <div class="teach-title">
+              <span>
+                <a href="https://cistup.iisc.ac.in/" target="_blank" rel="noopener">
+                  Indian Institute of Science (IISc), CISTUP
+                </a>
+                - <em>AI Research Intern</em>
+              </span>
+              <span class="teach-badge">Jun&nbsp;2023 - Sep&nbsp;2023</span>
+            </div>
+            <div class="teach-sub">
+              Mentor:
+              <a href="https://www.vistalabiisc.com/P_portfolio/profile" target="_blank" rel="noopener">Prof. Punit Rathore</a>
+            </div>
+            <div class="xp-narrative">
+                This research internship involved developing a domain-specific Large Language Model and pioneering a novel approach for environmental sensing using mobile data.
+            </div>
+            <ul class="xp-bullets">
+              <li>Fine-tuned a <strong>LLaMA2-based legal document assistant</strong> by engineering custom NLP and web-scraping pipelines to build a high-quality, domain-specific dataset.</li>
+              <li>Established rigorous benchmarks to validate <strong>LLM performance</strong> for accuracy and contextual relevance, ensuring trustworthy and high-performing results.</li>
+              <li>Conducted a systematic study on <strong>road condition classification</strong> by applying signal processing techniques to extract predictive features from smartphone sensor data.</li>
+            </ul>
+            <div class="tags">
+              <span class="tag">LLMs</span>
+              <span class="tag">NLP</span>
+              <span class="tag">Data Pipelines</span>
+              <span class="tag">Signal Processing</span>
+            </div>
+          </li>
+
+          <li class="teach-card">
+            <div class="teach-title">
+              <span>
+                <a href="https://newspace.co.in/" target="_blank" rel="noopener">
+                  NewSpace Research and Technologies
+                </a>
+                - <em>Robotics Intern</em>
+              </span>
+              <span class="teach-badge">Jul&nbsp;2022 - Sep&nbsp;2022</span>
+            </div>
+             <div class="xp-narrative">
+                Gained foundational, hands-on experience in autonomous aerial systems, focusing on the complete development lifecycle from high-fidelity simulation to hardware testing.
+            </div>
+            <ul class="xp-bullets">
+              <li>Developed and validated autonomous quadcopter control systems, bridging simulation-to-reality gaps using <strong>Robot Operating System (ROS)</strong> and <strong>Software-in-the-Loop (SITL)</strong>.</li>
+              <li>Implemented and tuned <strong>flight control algorithms</strong> to significantly enhance mission stability and the precision of autonomous waypoint navigation for UAVs.</li>
+            </ul>
+            <div class="tags">
+              <span class="tag">ROS</span>
+              <span class="tag">UAV Control</span>
+              <span class="tag">SITL</span>
+              <span class="tag">MAVROS / MAVLink</span>
+              <span class="tag">PID Tuning</span>
+            </div>
+          </li>
+
+        </ol>
+        <footer>Copyright © <span id="year"></span> Sreekar Praneeth Marri. All rights reserved.</footer>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    (function expSearch(){
+      const input = document.getElementById('exp-search');
+      const list  = document.getElementById('exp-list');
+      const cards = Array.from(list.querySelectorAll('.teach-card'));
+      const meta  = document.getElementById('exp-meta');
+      if (!input || !cards.length) return;
+
+      function render(){
+        const q = input.value.trim().toLowerCase();
+        let shown = 0;
+        cards.forEach(c => {
+          const ok = c.textContent.toLowerCase().includes(q);
+          c.style.display = ok ? '' : 'none';
+          if (ok) shown++;
+        });
+        meta.textContent = `${shown} result${shown !== 1 ? 's' : ''}`;
+      }
+      let t; input.addEventListener('input', () => { clearTimeout(t); t = setTimeout(render, 120); });
+      render();
+    })();
+  </script>
+</body>
+</html>

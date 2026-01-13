@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Home</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.4/css/academicons.min.css" crossorigin="anonymous"/>
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <script defer src="assets/js/main.js"></script>
+
+  <style>
+    /* =========================================================
+       ✅ LOCK LAYOUT: only RIGHT content scrolls (sidebar fixed)
+       ========================================================= */
+
+    /* ===== HERO ===== */
+    .hero{
+      display:grid;
+      grid-template-columns: 190px 1fr;
+      gap: 18px;
+      align-items:center;
+      margin: 10px 0 14px;
+    }
+    .hero-left{ display:grid; place-items:center; }
+    .hero-avatar{
+      width: 170px; height: 170px; border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: var(--shadow);
+      display:grid; place-items:center; overflow:hidden;
+    }
+    .hero-avatar img{
+      width:88%; height:88%;
+      border-radius:999px;
+      object-fit:cover;
+      object-position:center;
+      display:block;
+    }
+
+    .hero-title{
+      font-size: clamp(28px, 4.1vw, 40px);
+      line-height:1.08;
+      margin:0 0 6px;
+      font-weight: 950;
+      letter-spacing:-.02em;
+    }
+    .hero-sub{
+      margin:0 0 10px;
+      line-height: 1.35;
+      font-weight: 900;
+      opacity:.95;
+      color: var(--text);
+    }
+    .hero-line{
+      margin: 0;
+      line-height: 1.72;
+      max-width: 92ch;
+      color: var(--muted);
+    }
+    .hero-line strong{ font-weight: 950; color: var(--text); }
+
+    /* ✅ Fun fact must be JUST BELOW introduction */
+    .funfact{
+      margin-top: 10px;
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+      border-radius: 14px;
+      padding: 10px 12px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.04);
+      box-shadow: 0 10px 22px rgba(0,0,0,.10);
+      max-width: 92ch;
+    }
+    .funfact i{
+      margin-top: 2px;
+      opacity: .92;
+      color: rgba(255,255,255,.92);
+    }
+    html[data-theme="light"] .funfact i{ color: rgba(11,18,32,.90); }
+    .funfact p{
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-weight: 850;
+    }
+    .funfact strong{ color: var(--text); font-weight: 950; }
+
+    /* ✅ remove the “blocks/chips” under intro */
+    .kpi-row{ display:none !important; }
+
+    .section{ margin: 12px 0 22px; }
+    .section h2{ margin: 0 0 10px; }
+
+    /* ===== PANELS ===== */
+    .panel{
+      border-radius: 16px;
+      padding: 16px;
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.06);
+      box-shadow: var(--shadow);
+      min-width: 0;
+
+      /* ✅ makes both cards same height */
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .panel h3{ margin:0 0 6px; font-size: 17px; line-height:1.25; }
+    .meta{ font-size:13px; color: var(--muted); margin-bottom:10px; line-height:1.35; }
+
+    .list{
+      margin: 8px 0 0 18px;
+      padding: 0;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+    .list li{ margin: 7px 0; }
+    .list strong{ color: var(--text); font-weight: 950; }
+
+    .callout{
+      margin-top: auto; /* ✅ pushes to bottom, aligns levels */
+      border-radius: 14px;
+      padding: 12px 12px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.04);
+      box-shadow: 0 10px 22px rgba(0,0,0,.10);
+    }
+    .callout p{
+      margin: 0;
+      color: rgba(255,255,255,.86);
+      line-height: 1.55;
+      font-weight: 900;
+    }
+    .callout .muted{
+      color: rgba(255,255,255,.72);
+      font-weight: 850;
+    }
+    html[data-theme="light"] .callout p{ color: rgba(11,18,32,.88); }
+    html[data-theme="light"] .callout .muted{ color: rgba(11,18,32,.68); }
+
+    /* =========================================================
+       ✅ THESIS: ONE ROW, 2 COLUMNS
+       Left (bigger): Thesis summary
+       Right: At a glance
+       ========================================================= */
+    .thesis-row{
+      display: grid;
+      grid-template-columns: 1.55fr 1fr;  /* ✅ thesis bigger */
+      gap: 14px;
+      align-items: stretch;
+    }
+    @media (max-width: 980px){
+      .thesis-row{ grid-template-columns: 1fr; }
+    }
+
+    /* ✅ NEW: small “explore” sentence block */
+    .explore-note{
+      margin-top: 12px;
+      max-width: 92ch;
+      color: var(--muted);
+      line-height: 1.6;
+      font-weight: 850;
+    }
+    .explore-note a{
+      color: var(--text);
+      font-weight: 950;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,.18);
+    }
+    .explore-note a:hover{ border-bottom-color: rgba(255,255,255,.45); }
+    html[data-theme="light"] .explore-note a{ border-bottom-color: rgba(11,18,32,.18); }
+    html[data-theme="light"] .explore-note a:hover{ border-bottom-color: rgba(11,18,32,.40); }
+
+    /* =========================================================
+       ✅ TIMELINE — your existing fixed version (unchanged)
+       ========================================================= */
+    .timeline-wrap{
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.06);
+      background: var(--card);
+      padding: 18px 18px 22px;
+      box-shadow: var(--shadow);
+      overflow: visible;
+      position: relative;
+      isolation: isolate;
+    }
+    .timeline-note{
+      margin:0 0 10px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+      max-width: 92ch;
+    }
+
+    .timeline{
+      position: relative;
+      padding: 14px 12px 18px;
+      margin-top: 6px;
+      overflow: visible;
+    }
+    .timeline::before{
+      content:"";
+      position:absolute;
+      left: 50%;
+      top: 12px;
+      bottom: 12px;
+      width: 3px;
+      background: rgba(255,255,255,.18);
+      border-radius: 999px;
+      transform: translateX(-50%);
+      z-index: 0;
+    }
+
+    .t-item{
+      position: relative;
+      display:grid;
+      grid-template-columns: minmax(0, 1fr) 78px minmax(0, 1fr);
+      gap: 16px;
+      align-items: start;
+      margin: 18px 0;
+      width: 100%;
+      max-width: 100%;
+      overflow: visible;
+
+      --node-size: 18px;
+      --node-offset: 14px;
+      --node-center: calc(var(--node-offset) + (var(--node-size) / 2));
+    }
+    .t-item > .t-card,
+    .t-item > .t-node{ grid-row: 1; }
+
+    .t-node{
+      grid-column: 2;
+      width: var(--node-size);
+      height: var(--node-size);
+      border-radius: 999px;
+      margin: var(--node-offset) auto 0;
+      background: var(--col);
+      box-shadow:
+        0 0 0 6px color-mix(in oklab, var(--col) 22%, transparent 78%),
+        0 12px 24px rgba(0,0,0,.18);
+      position: relative;
+      z-index: 3;
+    }
+
+    .t-item.featured .t-node::after{
+      content:"\f005";
+      font-family:"Font Awesome 6 Free";
+      font-weight: 900;
+      position:absolute;
+      inset: 0;
+      display:grid;
+      place-items:center;
+      font-size: 10px;
+      color: rgba(255,255,255,.96);
+      text-shadow: 0 1px 2px rgba(0,0,0,.35);
+      transform: translateY(-0.25px);
+    }
+    html[data-theme="light"] .t-item.featured .t-node::after{
+      color: rgba(11,16,32,.90);
+      text-shadow: none;
+    }
+
+    .t-card{
+      width: 100%;
+      max-width: 560px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 14px 28px rgba(0,0,0,.14);
+      padding: 10px 12px 10px 14px;
+      position: relative;
+      min-width: 0;
+      word-break: break-word;
+      overflow: visible;
+      z-index: 1;
+    }
+    .t-card::before{
+      content:"";
+      position:absolute;
+      left: 0;
+      top: 10px;
+      bottom: 10px;
+      width: 4px;
+      border-radius: 999px;
+      background: var(--col);
+      opacity: .95;
+    }
+
+    .t-card::after{
+      content:"";
+      position:absolute;
+      top: var(--node-center);
+      width: 56px;
+      border-top: 2px dashed rgba(255,255,255,.25);
+      opacity: .95;
+    }
+    .t-card.left{ grid-column: 1; justify-self: end; }
+    .t-card.left::after{ right: -56px; }
+    .t-card.right{ grid-column: 3; justify-self: start; }
+    .t-card.right::after{ left: -56px; }
+
+    .t-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+    .t-badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      font-weight: 950;
+      font-size: 11.5px;
+      white-space: nowrap;
+      color: rgba(255,255,255,.90);
+    }
+
+    .t-when{
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--col);
+      border: 1px solid rgba(255,255,255,.18);
+      color: rgba(11,18,32,.95);
+      font-weight: 950;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .t-title{
+      margin: 0 0 3px;
+      font-weight: 950;
+      font-size: 15px;
+      line-height: 1.25;
+      color: rgba(255,255,255,.95);
+    }
+    .t-desc{
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.55;
+      color: rgba(255,255,255,.78);
+    }
+
+    .t-tip{
+      margin-top: 0;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      border-radius: 14px;
+      padding: 0 10px;
+      background: rgba(15,23,42,.92);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 14px 30px rgba(0,0,0,.22);
+      transition: max-height .18s ease, opacity .14s ease, margin-top .18s ease, padding .18s ease;
+    }
+    .t-tip p{
+      margin:0;
+      font-size: 13px;
+      line-height: 1.45;
+      font-weight: 850;
+      color: rgba(255,255,255,.90);
+    }
+    .t-tip .muted{ color: rgba(255,255,255,.70); font-weight: 850; }
+
+    .t-card:hover .t-tip,
+    .t-card:focus-within .t-tip{
+      margin-top: 10px;
+      padding: 9px 10px;
+      max-height: 120px;
+      opacity: 1;
+    }
+
+    html[data-theme="light"] .timeline::before{ background: rgba(11,18,32,.22); }
+    html[data-theme="light"] .t-card::after{ border-top-color: rgba(11,18,32,.26); }
+    html[data-theme="light"] .t-card{
+      border-color: rgba(11,18,32,.14);
+      box-shadow: 0 14px 28px rgba(11,18,32,.10);
+    }
+    html[data-theme="light"] .t-badge{
+      color: rgba(11,18,32,.88);
+      border-color: rgba(11,18,32,.14);
+      background: rgba(255,255,255,.60);
+    }
+    html[data-theme="light"] .t-title{ color: rgba(11,18,32,.94); }
+    html[data-theme="light"] .t-desc{ color: rgba(11,18,32,.72); }
+    html[data-theme="light"] .timeline-note{ color: rgba(11,18,32,.66); }
+    html[data-theme="light"] .t-when{
+      background: var(--col);
+      border-color: rgba(11,18,32,.14);
+      color: rgba(11,18,32,.95);
+    }
+
+    @media (max-width: 860px){
+      .timeline::before{ left: 26px; transform: none; }
+      .t-item{ grid-template-columns: 52px 1fr; gap: 12px; margin: 14px 0; }
+      .t-node{ grid-column: 1; margin: 14px 0 0; }
+      .t-card{ grid-column: 2; justify-self: stretch; max-width: none; }
+      .t-card.left, .t-card.right{ grid-column: 2; justify-self: stretch; }
+      .t-card::after{ display:none; }
+    }
+
+    @media (max-width: 900px){
+      .hero{ grid-template-columns: 1fr; text-align:center; }
+      .funfact{ margin-left:auto; margin-right:auto; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar" role="navigation" aria-label="Mobile">
+    <button class="hamburger" id="btn-menu" aria-label="Toggle menu"><i class="fa fa-bars"></i></button>
+    <strong id="topbar-name">Sreekar Praneeth Marri</strong>
+  </div>
+
+  <div class="app">
+    <aside class="sidebar" aria-label="Sidebar">
+      <div class="brand">
+        <img src="assets/img/Sreekar.jpg" alt="Profile" />
+        <div>
+          <div class="name" id="cfg-name">Sreekar Praneeth Marri</div>
+          <div class="role" id="cfg-role">Machine Learning · Robotics &amp; AI</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <nav class="nav" id="nav">
+        <a href="index.html" class="active"><i class="fa fa-house"></i>Home</a>
+        <a href="publications.html"><i class="fa fa-book-open"></i>Publications</a>
+        <a href="projects.html"><i class="fa fa-rocket"></i>Projects</a>
+        <a href="professional.html"><i class="fa fa-microphone"></i>Professional Experience</a>
+        <a href="teaching.html"><i class="fa fa-chalkboard-teacher"></i>Teaching Experience</a>
+        <a href="contact.html"><i class="fa fa-envelope"></i>Contact</a>
+      </nav>
+
+      <div class="social" aria-label="Profiles">
+        <a id="cfg-twitter" href="mailto:praneethmarri2505@gmail.com" title="Email" target="_blank" rel="noopener"><i class="fa-solid fa-envelope"></i></a>
+        <a id="cfg-gscholar" href="https://scholar.google.com/citations?user=9nziCwEAAAAJ" title="Google Scholar" target="_blank" rel="noopener"><i class="fa-brands fa-google-scholar"></i></a>
+        <a id="cfg-github" href="https://github.com/SreekarPraneethMarri" title="GitHub" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
+        <a id="cfg-linkedin" href="https://www.linkedin.com/in/sreekarpraneethmarri/" title="LinkedIn" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i></a>
+      </div>
+
+      <div class="btn-row">
+        <a class="btn" id="download-cv" href="cv/SreekarPraneethMarri_CV.pdf" target="_blank" rel="noopener"><i class="fa fa-file"></i> CV</a>
+        <button class="btn secondary" id="toggle-theme" type="button"><i class="fa fa-moon"></i> Theme</button>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section id="home" tabindex="-1">
+
+        <!-- HERO -->
+        <div class="hero">
+          <div class="hero-left">
+            <div class="hero-avatar">
+              <img src="assets/img/Sreekar.jpg" alt="Sreekar Praneeth Marri" loading="eager">
+            </div>
+          </div>
+
+          <div class="hero-right">
+            <h1 class="hero-title">Hi, I’m Sreekar.</h1>
+            <p class="hero-sub">Soft Robotics · BioRobotics · Robotic Systems · Machine Learning &amp; AI</p>
+
+            <p class="hero-line">
+              I’m an M.S. student in <strong>Robotics &amp; Autonomous Systems</strong> at <strong>Boston University</strong> and a Graduate Researcher in
+              Professor Tommaso Ranzani’s <em>Morphable Biorobotics Lab</em>. My work sits at the intersection of
+              <strong>sensorized soft bioinspired robotics</strong>, <strong>robust sensing</strong>, and <strong>machine learning-based control</strong>, turning noisy real-world signals into
+              reliable state estimates and <strong>control-ready actuation commands</strong>.
+              <br>
+              I started in <strong>Computer Science Engineering (AI)</strong> at Amrita, then worked across <em>ROS/UAV autonomy</em> and applied ML research.
+              During an academic exchange at <strong>University of California Riverside</strong>, I focused on <em>time-series anomaly detection</em> on scientific gravitational signals (LIGO),
+              which shaped my research style: careful baselines, rigorous evaluation, and clear failure-mode analysis with multiple iterations and improvements.
+            </p>
+
+            <!-- ✅ FUN FACT (exactly below intro) -->
+            <div class="funfact">
+              <i class="fa-solid fa-mug-saucer" aria-hidden="true"></i>
+              <p><strong>Fun fact:</strong> I’m a certified Starbucks barista ☕.</p>
+            </div>
+
+            <!-- ✅ ADDED SENTENCE (ONLY CHANGE REQUESTED) -->
+            <p class="explore-note">
+              Feel free to explore the site for projects and research highlights as well as my <a href="cv/SreekarPraneethMarri_CV.pdf" target="_blank" rel="noopener">CV</a> for more information.
+            </p>
+
+            <!-- kept in DOM, hidden via CSS -->
+            <div class="kpi-row" aria-label="Quick highlights">
+              <div class="kpi">ML Systems</div>
+              <div class="kpi">Deep Learning</div>
+              <div class="kpi">Time-Series</div>
+              <div class="kpi">Soft Robotics Control</div>
+              <div class="kpi">Computer Vision</div>
+              <div class="kpi">NLP / LLMs</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- THESIS (NO IMAGE) -->
+        <section class="section" id="thesis">
+          <h2>Current work (Thesis)</h2>
+
+          <div class="thesis-row">
+            <!-- LEFT: Thesis (bigger) -->
+            <div class="panel">
+              <h3><em>Real-Time Machine Learning-based control of a underwater Stacked Balloon Actuator (SBA)</em></h3>
+
+              <ul class="list">
+                <li><strong>Platform:</strong> Multi-DOF SBA with embedded sensing for tip communication and sensing.</li>
+                <li><strong>Sensing:</strong> synchronized IMU + magnetometer readings, plus Aurora EM tracking for ground-truth pose and dataset alignment.</li>
+                <li><strong>Models:</strong> two-phase learning pipeline - (1) residual network: <strong>(Δx,Δy,Δz) → quaternion</strong>, (2) LSTM: <strong>(magnetometer + quaternion) → volumes (V<sub>A</sub>,V<sub>B</sub>,V<sub>C</sub>)</strong>.</li>
+                <li><strong>What it enables:</strong> reliable <strong>open-loop</strong> actuation and a foundation for <strong>closed-loop</strong> control (MPC / model-based RL).</li>
+              </ul>
+
+              <div class="callout">
+                <strong><u>Major results accomplished so far:</u></strong><br>Large repeatable dataset, quaternion prediction, and open-loop infinity (lemniscate) tracking.
+              </div>
+            </div>
+
+            <!-- RIGHT: At a glance -->
+            <div class="panel">
+              <h3><u>At a glance:</u></h3>
+              <div class="meta">How I typically work (and what I optimize for)</div>
+
+              <ul class="list">
+                <li><strong>End-to-end:</strong> sensing → data pipelines → models → evaluation → control integration.</li>
+                <li><strong>Practical ML:</strong> clean datasets, reproducible training, measurable gains, and deployment-minded constraints.</li>
+                <li><strong>Focus:</strong> robust learning under physical constraints for deployable soft robotic systems.</li>
+              </ul>
+
+              <div class="callout">
+                <strong><u>You’ll see:</u></strong> <br>Honest diagnostics and strong experiments, and controllers designed based on ML/AI algorithms.
+              </div>
+            </div>
+          </div>
+        </section>
+        <br>
+
+        <!-- TIMELINE -->
+        <section class="section" id="timeline">
+          <h2>Timeline</h2>
+
+          <div class="timeline-wrap">
+            <p class="timeline-note">
+              Timeline highlighting my <strong>Experience and Education</strong> (most recent → oldest).
+              <br>Hover/tap for <strong>GPA/Honors</strong> (education) and <strong>stack</strong> (experience).
+            </p>
+
+            <div class="timeline" role="list" aria-label="Reverse chronological combined timeline">
+
+              <div class="t-item featured" style="--col:#fb923c;" role="listitem">
+                <div class="t-card right" tabindex="0">
+                  <div class="t-top">
+                    <span class="t-badge"><i class="fa-solid fa-flask"></i> Experience · Boston University (MBL)</span>
+                    <span class="t-when">Sep 2024 - Present</span>
+                  </div>
+                  <h3 class="t-title">Graduate Researcher</h3>
+                  <p class="t-desc">Learning-based control of underwater soft robotic actuators (thesis research)</p>
+                  <div class="t-tip" aria-hidden="true">
+                    <p><span class="muted">Stack:</span> Machine Learning · Fabrication · Sensor fusion · RL</p>
+                  </div>
+                </div>
+                <div class="t-node" aria-hidden="true"></div>
+              </div>
+
+              <div class="t-item" style="--col:#38bdf8;" role="listitem">
+                <div class="t-card left" tabindex="0">
+                  <div class="t-top">
+                    <span class="t-badge"><i class="fa-solid fa-chalkboard-teacher"></i> Experience · BU College of Engineering</span>
+                    <span class="t-when">Sep 2025 - Jan 2026</span>
+                  </div>
+                  <h3 class="t-title">Teaching Assistant (ME 568 · Soft Robotics)</h3>
+                  <p class="t-desc">Led lab sessions, mentored teams, supported course delivery</p>
+                  <div class="t-tip" aria-hidden="true">
+                    <p><span class="muted">Stack:</span> Soft robotics · Prototyping · Testing · Teaching</p>
+                  </div>
+                </div>
+                <div class="t-node" aria-hidden="true"></div>
+              </div>
+
+              <div class="t-item" style="--col:#fb7185;" role="listitem">
+                <div class="t-card right" tabindex="0">
+                  <div class="t-top">
+                    <span class="t-badge"><i class="fa-solid fa-laptop-code"></i> Experience · BU School of Medicine (Tay Lab)</span>
+                    <span class="t-when">Nov 2024 - Mar 2025</span>
+                  </div>
+                  <h3 class="t-title">Research Programmer</h3>
+                  <p class="t-desc">Biomedical imaging workflows for microglial cell identification</p>
+                  <div class="t-tip" aria-hidden="true">
+                    <p><span class="muted">Stack:</span> Python · CV · U-Net · Large-scale annotation · HPC</p>
+                  </div>
+                </div>
+                <div class="t-node" aria-hidden="true"></div>
+              </div>
+
+              <div class="t-item featured" style="--col:#34d399;" role="listitem">
+                <div class="t-card left" tabindex="0">
+                  <div class="t-top">
+                    <span class="t-badge"><i class="fa-solid fa-graduation-cap"></i> Education · Boston University</span>
+                    <span class="t-when">Aug 2024 - Present</span>
+                  </div>
+                  <h3 class="t-title">M.S. · Robotics &amp; Autonomous Systems</h3>
+                  <p class="t-desc">Specialization: Data Analytics</p>
+                  <div class="t-tip" aria-hidden="true">
+                    <p><span class="muted">GPA:</span> 3.88/4.0 · <span class="muted">Honors:</span> Dean’s Scholarship · RAS Ambassador · Course Grader</p>
+                  </div>
+                </div>
+                <div class="t-node" aria-hidden="true"></div>
+              </div>
+
+              <div class="t-item" style="--col:#60a5fa;" role="listitem">
+                <div class="t-card right" tabindex="0">
+                  <div class="t-top">
+                    <span class="t-badge"><i class="fa-solid fa-graduation-cap"></i> Education · UC Riverside</span>
+                    <span class="t-when">Sep 2023 - Jun 2024</span>
+                  </div>
+                  <h3 class="t-title">Advanced Certificate in Engineering (Computer Science)</h3>
+                  <p class="t-desc">Academic Exchange, Undergraduate Senior Year</p>
+                  <div class="t-tip" aria-hidden="true">
+                    <p><span class="muted">GPA:</span> 3.96/4.0 · <span class="muted">Activity:</span> LIGO Research</p>
+                  </div>
+                </div>
+                <div class="t-node" aria-hidden="true"></div>
+              </div>
+
+              <div class="t-item" style="--col:#f59e0b;" role="listitem">
+                <div class="t-card left" tabindex="0">
+                  <div class="t-top">
+                    <span class="t-badge"><i class="fa-solid fa-briefcase"></i> Experience · IISc Bangalore</span>
+                    <span class="t-when">Jun 2023 - Sep 2023</span>
+                  </div>
+                  <h3 class="t-title">AI Research Intern</h3>
+                  <p class="t-desc">LLM/NLP pipelines + benchmarking; applied ML research</p>
+                  <div class="t-tip" aria-hidden="true">
+                    <p><span class="muted">Stack:</span> LLaMA2 · NLP · Web scraping · Evaluation · SLR</p>
+                  </div>
+                </div>
+                <div class="t-node" aria-hidden="true"></div>
+              </div>
+
+              <div class="t-item" style="--col:#38bdf8;" role="listitem">
+                <div class="t-card right" tabindex="0">
+                  <div class="t-top">
+                    <span class="t-badge"><i class="fa-solid fa-briefcase"></i> Experience · NewSpace Research &amp; Technologies</span>
+                    <span class="t-when">Jul 2022 - Sep 2022</span>
+                  </div>
+                  <h3 class="t-title">Robotics Intern</h3>
+                  <p class="t-desc">Quadcopter SITL + ROS-based autonomy integration</p>
+                  <div class="t-tip" aria-hidden="true">
+                    <p><span class="muted">Stack:</span> ROS · SITL · Python · UAV Control</p>
+                  </div>
+                </div>
+                <div class="t-node" aria-hidden="true"></div>
+              </div>
+
+              <div class="t-item" style="--col:#fbbf24;" role="listitem">
+                <div class="t-card left" tabindex="0">
+                  <div class="t-top">
+                    <span class="t-badge"><i class="fa-solid fa-graduation-cap"></i> Education · Amrita Vishwa Vidyapeetham</span>
+                    <span class="t-when">Sep 2020 - Aug 2023</span>
+                  </div>
+                  <h3 class="t-title">B.Tech · Computer Science Engineering (Artificial Intelligence)</h3>
+                  <p class="t-desc">First Class with Distinction</p>
+                  <div class="t-tip" aria-hidden="true">
+                    <p><span class="muted">CGPA:</span> 9.15/10 · <span class="muted">Honors:</span> Rank 7 · CS Club leadership</p>
+                  </div>
+                </div>
+                <div class="t-node" aria-hidden="true"></div>
+              </div>
+
+              <div class="t-item" style="--col:#60a5fa;" role="listitem">
+                <div class="t-card right" tabindex="0">
+                  <div class="t-top">
+                    <span class="t-badge"><i class="fa-solid fa-school"></i> Education · Alpine Public School</span>
+                    <span class="t-when">2018 - 2020</span>
+                  </div>
+                  <h3 class="t-title">11th &amp; 12th Class</h3>
+                  <p class="t-desc">Higher Secondary</p>
+                  <div class="t-tip" aria-hidden="true">
+                    <p><span class="muted">Grade:</span> 89.2%</p>
+                  </div>
+                </div>
+                <div class="t-node" aria-hidden="true"></div>
+              </div>
+
+              <div class="t-item" style="--col:#34d399;" role="listitem">
+                <div class="t-card left" tabindex="0">
+                  <div class="t-top">
+                    <span class="t-badge"><i class="fa-solid fa-school"></i> Education · Air Force School</span>
+                    <span class="t-when">10th Class</span>
+                  </div>
+                  <h3 class="t-title">Secondary School</h3>
+                  <p class="t-desc">10th Grade</p>
+                  <div class="t-tip" aria-hidden="true">
+                    <p><span class="muted">Grade:</span> 90.8%</p>
+                  </div>
+                </div>
+                <div class="t-node" aria-hidden="true"></div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <footer>Copyright © <span id="year"></span> Sreekar Praneeth Marri. All rights reserved.</footer>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
