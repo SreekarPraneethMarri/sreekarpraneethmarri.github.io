@@ -93,7 +93,42 @@ section { margin: 0 0 48px 0; }
 .pub-controls { display: grid; grid-template-columns: 1fr auto auto; gap: 10px; align-items: center; margin-bottom: 12px; }
 .input, .select { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.10); color: var(--text); border-radius: 10px; padding: 10px 12px; outline: none; }
 .select { padding-right: 36px; }
+/* Publications: search box + both dropdowns, same height and style */
+.pub-controls{ grid-template-columns: 1fr 200px 200px; }
+.pub-controls .input,
+.pub-controls .select{
+  -webkit-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  height: 44px;
+  padding: 0 14px;
+  font: inherit;
+}
+.pub-controls .select{
+  padding-right: 38px;
+  cursor: pointer;
+  /* small arrow (appearance:none removes the browser's own) */
+  background-image:
+    linear-gradient(45deg, transparent 50%, currentColor 50%),
+    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: calc(100% - 20px) 50%, calc(100% - 15px) 50%;
+  background-size: 5px 5px;
+  background-repeat: no-repeat;
+}
+.pub-controls .input:focus,
+.pub-controls .select:focus{ border-color: var(--accent); }
 
+/* Light theme: keep the boxes visible on the white background */
+[data-theme="light"] .input,
+[data-theme="light"] .select{ background-color: #fff; border-color: rgba(11,16,32,.15); }
+
+/* Phones: search on top, the two dropdowns side by side below */
+@media (max-width: 720px){
+  .pub-controls{ grid-template-columns: 1fr 1fr; }
+  .pub-controls .input{ grid-column: 1 / -1; }
+}
 .pub-list .pub { display: grid; grid-template-columns: 1fr auto; gap: 10px; padding: 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,.06); background: rgba(255,255,255,.03); }
 .pub .title { font-weight: 700; }
 .pub .meta { color: var(--muted); font-size: .95rem; margin-top: 6px; }
